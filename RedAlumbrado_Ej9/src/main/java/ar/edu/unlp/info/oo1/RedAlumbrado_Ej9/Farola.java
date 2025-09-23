@@ -3,11 +3,11 @@ import java.util.*;
 
 public class Farola {
 	private boolean on;
-	private List<Farola> neightbours;
+	private List<Farola> neightbors;
 	
 	public Farola () {
 		this.on = false;
-		this.neightbours = new LinkedList<Farolas>();
+		this.neightbors = new LinkedList<Farola>();
 	}
 	
 	public boolean isOn() {
@@ -21,17 +21,17 @@ public class Farola {
 		return !this.isOn();
 	}
 	
-	public void pairWithNeightbour(Farola other) {
-		if (!this.neightbours.contains(other)) {
-			neightbours.add(other);
-			other.pairWithNeightbour(this);
+	public void pairWithNeightbor(Farola other) {
+		if (!this.neightbors.contains(other)) {
+			neightbors.add(other);
+			other.pairWithNeightbor(this);
 		}
 	}
 	
 	public void turnOn() {
 		if (this.isOff()) {
 			this.on = true;
-			for (Farola f: this.neightbours) {
+			for (Farola f: this.neightbors) {
 				f.turnOn();
 			}
 		}
@@ -40,9 +40,16 @@ public class Farola {
 	public void turnOff() {
 		if (this.isOn()) {
 			this.on = false;
-			for (Farola f: this.neightbours) {
+			for (Farola f: this.neightbors) {
 				f.turnOff();
 			}
 		}
 	}
+
+	public List<Farola> getNeightbors() {
+		return neightbors;
+	}
+
+	
+	
 }

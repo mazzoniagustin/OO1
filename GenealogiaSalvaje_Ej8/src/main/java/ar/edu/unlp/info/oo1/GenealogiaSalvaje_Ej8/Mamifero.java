@@ -10,6 +10,11 @@ public class Mamifero {
 		
 	}
 	
+	
+	public Mamifero (String unIdentif) {
+		this.identificador = unIdentif;
+	}
+	
 	public void setIdentificador(String unIdentificador) {
 		this.identificador = unIdentificador;
 	}
@@ -94,16 +99,26 @@ public class Mamifero {
 		}
 	}
 	
-	public boolean tieneComoAncestro (Mamifero unMamif) {
-		if ((this.getMadre().equals(unMamif)) || (this.getPadre().equals(unMamif))) {
-			return true;
-		}
-		if ((this.madre.tieneComoAncestro(unMamif)) || (this.padre.tieneComoAncestro(unMamif))) {
-			return true;
-		}
-		return false;
+	public boolean tieneComoAncestroA(Mamifero unMamif) {
+	    if (unMamif == null || unMamif == this) {
+	        return false;
+	    }
+
+	    if (this.madre != null) {
+	        if (this.madre.equals(unMamif) || this.madre.tieneComoAncestroA(unMamif)) {
+	            return true;
+	        }
+	    }
+
+	    if (this.padre != null) {
+	        if (this.padre.equals(unMamif) || this.padre.tieneComoAncestroA(unMamif)) {
+	            return true;
+	        }
+	    }
+
+	    return false;
 	}
-	
+
 	
 	
 	
